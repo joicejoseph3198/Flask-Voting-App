@@ -1,0 +1,58 @@
+flask shell
+from app import db
+from app.models import UserModel
+user = UserModel(...)
+db.session.add(user)
+db.session.commit()
+
+
+can = CandidateModel.query.filter_by(roll_num=87654321).one()
+db.session.delete(can)
+db.session.commit()
+
+10000001	Admin	admin@gmail.com	adminpassword
+
+# creating an admin and an random user
+admin = UserModel(roll_num=10000001, name='Admin', email="admin@gmail.com", password=generate_password_hash("adminpassword"), admin=1)
+db.session.add(admin)
+user1 = UserModel(roll_num=12345678, name='Joice Joseph', email="joice@gmail.com", password=generate_password_hash("12345678"))
+db.session.add(user1)
+
+# PRESIDENT
+candidate0 = CandidateModel(roll_num=99999990, first_name='No', last_name='Vote', 
+                            batch='NA', course='NA', department='NA', post='President')
+db.session.add(candidate0)
+candidate1 = CandidateModel(roll_num=17110011, first_name='Jennifer', last_name='Johnson', 
+                            batch=2025, course= "PhD", department="Department of Cognitive Science", post="President", 
+                            pic_path='static/images/ape1.jpg',agenda="Apes stay strong together")
+db.session.add(candidate1)
+candidate2 = CandidateModel(roll_num=25794859, first_name='John', last_name='Ferguson', 
+                            batch=2023, course= "MSc", department="Department of Economics and Business", post="President", 
+                            pic_path='static/images/ape2.jpg',agenda="I believe in energy: channeled and fierce.")
+db.session.add(candidate2)
+candidate3 = CandidateModel(roll_num=35794859, first_name='Samuel', last_name='Patterson', 
+                            batch=2022, course= "MSc", department="Department of International Relations", post="President", 
+                            pic_path='static/images/ape3.jpg',agenda="Unity is strength. Knowledge is power. Attitude is everything.")
+db.session.add(candidate3)
+
+# VICE-PRESIDENT
+candidate0 = CandidateModel(roll_num=99999991, first_name='No', last_name='Vote', 
+                            batch='NA', course='NA', department='NA', post='Vice-President')
+db.session.add(candidate0)
+candidate1 = CandidateModel(roll_num=57110021, first_name='Michael', last_name='Hensley', 
+                            batch=2025, course= "PhD", department="Department of History", post="Vice-President", 
+                            pic_path='static/images/ape4.jpg',agenda="Daring to go where markets have failed and aid has fallen short.")
+db.session.add(candidate1)
+candidate2 = CandidateModel(roll_num=75794759, first_name='Elijah', last_name='Fisher', 
+                            batch=2023, course= "MSc", department="Department of Gender Studies", post="Vice-President", 
+                            pic_path='static/images/ape5.jpg',agenda="Doing whats right, not whats easy.")
+db.session.add(candidate2)
+candidate3 = CandidateModel(roll_num=35794259, first_name='Patricia', last_name='Hamilton', 
+                            batch=2022, course= "MSc", department="DDepartment of Legal Studies", post="Vice-President", 
+                            pic_path='static/images/ape6.jpg',agenda="Believe in Success No Matter Your Age")
+db.session.add(candidate3)
+
+db.session.commit()
+
+print('Database Initialized.')
+

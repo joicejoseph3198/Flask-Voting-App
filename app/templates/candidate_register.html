@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="column is-8 is-offset-2">
+    <h3 class="title">Register a new candidate</h3>
+    <div class="box">
+        {% with errors = get_flashed_messages(category_filter=["error"]) %}
+        {% if errors %}
+            <div class="notification is-danger">
+            <ul>
+                {%- for msg in errors %}
+                    <li>{{ msg }}</li>
+                {% endfor -%}
+            </ul>
+            </div>
+        {% endif %}
+        {% endwith %}
+        {% with success = get_flashed_messages(category_filter=["success"]) %}
+        {% if success %}
+            <div class="notification is-success">
+            {%- for msg in success %}
+                <ul>{{ msg }}. Go to <a href="{{ url_for('candidate') }}">Candidate Info</a> to view details.</ul>
+            {% endfor -%}
+            </div>
+        {% endif %}
+        {% endwith %}
+        <form method="POST" action="/candidate_register">
+            <div class="field">
+                <div class="control">
+                    <input class="input is-small" type="integer" name="roll_num" placeholder="Roll Number" autofocus="">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-small" type="text" name="first_name" placeholder="First Name" autofocus="">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-small" type="text" name="last_name" placeholder="Last Name" autofocus="">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                  <textarea class="textarea is-small"  name="agenda" placeholder="Candidate Agenda" autofocus=""></textarea>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-small" type="text" name="batch" placeholder="Batch" autofocus="">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-small" type="text" name="course" placeholder="Course" autofocus="">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-small" type="text" name="department" placeholder="Department" autofocus="">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <div class="select is-rounded is-small">
+                        <select name="post">
+                          <option value="President">President</option>
+                          <option value="Vice-President">Vice-President</option>
+                        </select>
+                      </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-small" type="text" name="pic_path" placeholder="Add path to candidate's picture eg. /static/images/img.jpg" autofocus="">
+                </div>
+            </div>
+
+            <button class="button is-block is-info is-small is-fullwidth">Register Candidate</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

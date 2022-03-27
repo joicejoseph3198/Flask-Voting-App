@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+{% block styles %}
+{{ super() }}
+
+<script src="https://cdn.jsdelivr.net/momentjs/2.9.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.bundle.min.js"></script>
+
+{% endblock %}
+
+{% block content %}
+
+<h1 class="subtitle has-text-success"> Presidential Election Results</h1>
+<canvas id="myChart" max-width="100" max-height="100"></canvas>
+    <script>
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{ labels | tojson }},
+            datasets: [{
+                label: ' No of Votes',
+                data: {{ data | tojson }},
+                backgroundColor: [
+                    'rgba(85,107,47,0.2)',
+                    'rgba(124,252,0, 0.2)',
+                    'rgba(0,128,0, 0.2)',
+                    'rgba(144,238,144, 0.2)',
+                    'rgba(0,255,127, 0.2)',
+                    'rgba(240,230,140, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 255, 255, 1)',
+                    'rgba(255, 255, 255, 1)',
+                    'rgba(255, 255, 255, 1)',
+                    'rgba(255, 255, 255, 1)',
+                    'rgba(255, 255, 255, 1)',
+                    'rgba(255, 255, 255, 1)',
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    </script>
+<br>
+<br>
+<h1 class="subtitle has-text-success"> Vice-Presidential Election Results</h1>
+
+<canvas id="myChart1" max-width="80" max-height="80"></canvas>
+<script>
+
+var ctx = document.getElementById('myChart1').getContext('2d');
+var myChart1 = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: {{ labels1 | tojson }},
+        datasets: [{
+            label: 'No of Votes',
+            data: {{ data1 | tojson }},
+            backgroundColor: [
+                'rgba(85,107,47,0.2)',
+                'rgba(124,252,0, 0.2)',
+                'rgba(0,128,0, 0.2)',
+                'rgba(144,238,144, 0.2)',
+                'rgba(0,255,127, 0.2)',
+                'rgba(240,230,140, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 255, 255, 1)',
+                'rgba(255, 255, 255, 1)',
+                'rgba(255, 255, 255, 1)',
+                'rgba(255, 255, 255, 1)',
+                'rgba(255, 255, 255, 1)',
+                'rgba(255, 255, 255, 1)',
+            ],
+            borderWidth: 2
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+setInterval(function(callback){
+    const Http = new XMLHttpRequest({mozSystem: true});
+    const url='http://localhost:5000/vote/count';
+    Http.open("GET", url);
+    Http.setRequestHeader("Access-Control-Allow-Origin","*");
+    Http.setRequestHeader("Access-Control-Allow-Credentials", "true");
+    Http.setRequestHeader("Access-Control-Allow-Methods", "GET");
+    Http.setRequestHeader("Access-Control-Allow-Headers", "Content-Type");
+
+    Http.send();
+    Http.onreadystatechange = function(){
+        if(Http.readyState == 4){
+            var result = JSON.parse(Http.responseText);
+            // var label = Object.keys(labels).map(function (key) { return labels[key]; });
+        
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: result.labels,
+                    datasets: [{
+                        label: 'No of Votes',
+                        data: result.data,
+                        backgroundColor: [
+                            'rgba(85,107,47,0.2)',
+                            'rgba(124,252,0, 0.2)',
+                            'rgba(0,128,0, 0.2)',
+                            'rgba(144,238,144, 0.2)',
+                            'rgba(0,255,127, 0.2)',
+                            'rgba(240,230,140, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 255, 255, 1)',
+                            'rgba(255, 255, 255, 1)',
+                            'rgba(255, 255, 255, 1)',
+                            'rgba(255, 255, 255, 1)',
+                            'rgba(255, 255, 255, 1)',
+                            'rgba(255, 255, 255, 1)',
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            var ctx = document.getElementById('myChart1').getContext('2d');
+            var myChart1 = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: result.labels1,
+                    datasets: [{
+                        label: 'No of Votes',
+                        data: result.data1,
+                        backgroundColor: [
+                            'rgba(85,107,47,0.2)',
+                            'rgba(124,252,0, 0.2)',
+                            'rgba(0,128,0, 0.2)',
+                            'rgba(144,238,144, 0.2)',
+                            'rgba(0,255,127, 0.2)',
+                            'rgba(240,230,140, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 255, 255, 1)',
+                            'rgba(255, 255, 255, 1)',
+                            'rgba(255, 255, 255, 1)',
+                            'rgba(255, 255, 255, 1)',
+                            'rgba(255, 255, 255, 1)',
+                            'rgba(255, 255, 255, 1)',
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            myChart.update('none');
+            myChart1.update('none');
+        }
+    }
+  
+}, 10000);
+
+
+</script>
+{% endblock %}
+

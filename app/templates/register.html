@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="column is-4 is-offset-4">
+    <h3 class="title">Sign Up</h3>
+    <div class="box">
+        {% with errors = get_flashed_messages(category_filter=["error"]) %}
+        {% if errors %}
+            <div class="notification is-danger">
+            <ul>
+                {%- for msg in errors %}
+                    <li>{{ msg }}</li>
+                {% endfor -%}
+            </ul>
+            </div>
+        {% endif %}
+        {% endwith %}
+        {% with success = get_flashed_messages(category_filter=["success"]) %}
+        {% if success %}
+            <div class="notification is-success">
+            {%- for msg in success %}
+                <ul>{{ msg }} Go to <a href="{{ url_for('auth.login') }}">login page</ul>
+            {% endfor -%}
+            </div>
+        {% endif %}
+        {% endwith %}
+        <form method="POST" action="/auth/register">
+            <div class="field">
+                <div class="control">
+                    <input class="input is-small" type="integer" name="rollno" placeholder="Roll Number" autofocus="">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-small" type="email" name="email" placeholder="Email" autofocus="">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <input class="input is-small" type="text" name="name" placeholder="Name" autofocus="">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <input class="input is-small" type="password" name="password1" placeholder="Password">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <input class="input is-small" type="password" name="password2" placeholder="Confirm Password">
+                </div>
+            </div>
+
+
+            <button class="button is-block is-info is-small is-fullwidth">Sign Up</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

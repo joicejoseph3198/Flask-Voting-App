@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  Welcome, {{ name }}!
+</h1>
+{% if voter%}
+  <h1 class="subtitle has-text-success"> Your vote has been cast.</h1>
+  
+{%else%}
+  <h2 class="subtitle">
+      You can cast your vote here.<br>
+  </h2>
+  <div class="columns">
+      <div class="column is-4">
+        <img src="static/images/3.jpg">
+      </div>
+      <div class="column is-4 ">
+        
+        <div class="box">
+        <h3 class="title has-text-dark">Voting Form</h3>
+
+        Do take a look at the <a href="{{ url_for('candidate') }}"><u>candidates</u> </a> standing in the election before casting your vote.
+        <br> <br>
+
+        <form method="POST" action="/profile">
+          <div class="field ">
+            <label class="label">President</label>
+            <div class="select" >
+              <select name="president">
+                {% for prez in prez %}
+                    <option value ={{prez.roll_num}}>{{prez.first_name}} {{prez.last_name}} ({{prez.roll_num}})</option>
+                {% endfor %}
+              </select>
+            </div>
+            
+          </div>
+          <div class="field">
+            <label class="label">Vice-President</label>
+              <div class="select" >
+              <select name="vice-president">
+                {% for vice in vice %}
+                    <option value ={{vice.roll_num}}>{{vice.first_name}} {{vice.last_name}} ({{vice.roll_num}})</option>
+                {% endfor %}
+              </select>
+              </div>
+              <br>
+              <br>
+
+            <div class="field">
+              <button class="button  is-success">Cast Vote</button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="column is-4">
+      <img src="static/images/4.jpg">
+    </div>
+  </div>
+  {% endif %}
+{% endblock %}

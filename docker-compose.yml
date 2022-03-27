@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    command: python3 run.py
+    container_name: vote_app
+    restart: always
+    ports:
+      - "5000"
+    volumes:
+      - .:/app

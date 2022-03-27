@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero has-background-white-ter is-fullheight-with-navbar">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns">
+            <div class="column is-12 ">
+              <h1 class="title has-text-success">
+                Candidate Information
+            </h1>
+            <h2 class="subtitle is-5 has-text-dark has-text-centered has-text-weight-bold">
+                Information on which candidates are standing for election <br>
+                and what the key messages of their campaign are.
+            </h2>            
+            <br>
+            <br>
+            <div class="column id-9">
+              <h1 class="title has-text-success">Presidential Candidates</h1>
+              <br>
+              <div class="tile is-ancestor ">
+              {% for prez in prez %}
+                {% if not prez.last_name == 'Vote'%}
+                  
+                    <div class="tile is-parent">
+                      <article class="tile is-child box notification is-white">
+                        <h1 class="title is-5 has-text-dark">{{ prez.first_name }} {{ prez.last_name }}</h1>
+                        <p class="subtitle is-3 has-text-dark">{{prez.roll_num}}</p>
+                        <p class="title is-5 has-text-dark is-italic">"{{prez.agenda}}"</p>
+                        <figure class="image">
+                            <img class="is-rounded" src="{{ prez.pic_path}}">
+                        </figure>
+                        <br>
+                        <p class="subtitle has-text-dark has-text-weight-semibold">{{prez.batch}}</p>
+                        <p class="subtitle has-text-dark has-text-weight-semibold">{{prez.course}}, {{prez.department}}</p>
+                      </article>
+                    </div>
+                  
+                {% endif %}    
+              {% endfor %}
+              </div> 
+              <h1 class="title has-text-success">Vice-Presidential Candidates</h1>
+              <br>
+              <div class="tile is-ancestor ">
+                {% for vice in vice %}
+                  {% if not vice.last_name == 'Vote'%}
+                    
+                      <div class="tile is-parent">
+                        <article class="tile is-child box notification is-white">
+                          <h1 class="title is-5 has-text-dark">{{ vice.first_name }} {{ vice.last_name }}</h1>
+                          <p class="subtitle is-3 has-text-dark">{{vice.roll_num}}</p>
+                          <p class="title is-5 has-text-dark is-italic"> "{{vice.agenda}}"</p>
+                          <figure class="image">
+                              <img class="is-rounded" src="{{ vice.pic_path}}">
+                          </figure>
+                          <br>
+                          <p class="subtitle has-text-dark has-text-weight-semibold">{{vice.batch}}</p>
+                          <p class="subtitle has-text-dark has-text-weight-semibold">{{vice.course}}, {{vice.department}}</p>
+                        </article>
+                      </div>
+                    
+                  {% endif %}    
+                {% endfor %}
+            </div>
+        
+          </div>
+          </div>
+
+<br>
+<br>
+
+
+
+
+{% endblock %}
