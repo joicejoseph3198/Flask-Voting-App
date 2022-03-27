@@ -11,8 +11,13 @@ A voting application built with Flask and Bulma for creating the UI.
 <ul>Dockerized the flask application</ul>
 <br>
 <h1>Application Screenshots</h1>
-<img src="https://github.com/joicejoseph3198/Flask-Voting-App/blob/master/app/static/screenshots/Screenshot%202022-03-25%20at%2018-42-19%20Flask%20Vote%20App.png" width=50% height=50%>
-<img src="https://github.com/joicejoseph3198/Flask-Voting-App/blob/master/app/static/screenshots/Screenshot%202022-03-25%20at%2018-42-19%20Flask%20Vote%20App1.png" width=50% height=50%>
+
+<p float="left">
+  <img src="https://github.com/joicejoseph3198/Flask-Voting-App/blob/master/app/static/screenshots/Screenshot%202022-03-25%20at%2018-42-19%20Flask%20Vote%20App.png" width=50% height=50%>
+  <img src="https://github.com/joicejoseph3198/Flask-Voting-App/blob/master/app/static/screenshots/Screenshot%202022-03-25%20at%2018-42-19%20Flask%20Vote%20App1.png" width=50% height=50%>
+</p>
+
+
 <img src="https://github.com/joicejoseph3198/Flask-Voting-App/blob/master/app/static/screenshots/Screenshot%202022-03-25%20at%2018-45-59%20Flask%20Vote%20App.png" width=50% height=50%>
 <img src="https://github.com/joicejoseph3198/Flask-Voting-App/blob/master/app/static/screenshots/Screenshot%202022-03-25%20at%2018-50-00%20Flask%20Vote%20App.png" width=50% height=50%>
 <img src="https://github.com/joicejoseph3198/Flask-Voting-App/blob/master/app/static/screenshots/Screenshot%202022-03-25%20at%2018-54-49%20Flask%20Vote%20App.png" width=50% height=50%>
